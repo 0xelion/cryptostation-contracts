@@ -42,7 +42,7 @@ contract TokenERC20 is owned {
     event FrozenFunds(address target, bool frozen);
 
     /**
-     * Constrctor function
+     * Constructor function
      *
      * Initializes contract with initial supply tokens to the creator of the contract
      */
