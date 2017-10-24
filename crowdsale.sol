@@ -6,7 +6,13 @@ interface token {
 }
 
 contract Crowdsale {
+
+    event GoalReached(address beneficiary, uint amountRaised);
+    event FundTransfer(address backer, uint amount, bool isContribution);
+
+    address public beneficiary;
     uint public fundingGoal;
+    uint public amountRaised;
     uint public deadline;
     uint public price;
     token public tokenReward;
@@ -14,13 +20,7 @@ contract Crowdsale {
     bool fundingGoalReached = false;
     bool crowdsaleClosed = false;
 
-    event GoalReached(address beneficiary, uint amountRaised);
-    event FundTransfer(address backer, uint amount, bool isContribution);
-
-    address public beneficiary;
-    uint public amountRaised;
-
-    /**
+     /**
      * Constrctor function
      *
      * Setup the owner
@@ -33,9 +33,9 @@ contract Crowdsale {
         address addressOfTokenUsedAsReward
     ) {
         beneficiary = ifSuccessfulSendTo;
-        fundingGoal = fundingGoalInSzabos * 1 ether;
+        fundingGoal = fundingGoalInSzabos * 1 szabo;
         deadline = now + durationInMinutes * 1 minutes;
-        price = szaboCostOfEachToken * 1 ether;
+        price = szaboCostOfEachToken * 1 szabo;
         tokenReward = token(addressOfTokenUsedAsReward);
     }
 
